@@ -3,4 +3,6 @@
   - Víctor Martínez
 
 - [Kencove](https://www.kencove.com):
-  - Mohamed Alkobrosli
+  - Don Kendall \<<kendall@donkendall.com>\>
+  - Mohamed Alkobrosli \<<malkobrosly@kencove.com>\>
+  - Wai-Lun Lin \<<wlin@kencove.com>\>
