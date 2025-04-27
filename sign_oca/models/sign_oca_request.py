@@ -424,9 +424,17 @@ class SignOcaRequestSigner(models.Model):
             if field_info["type"] in ["char", "text"]:
                 partner_fields_dict.update({field_name: self.partner_id[field_name]})
             if field_info["type"] == "many2one":
-                partner_fields_dict.update(
-                    {field_name: self.partner_id[field_name].name}
-                )
+                # Manage KeyError if user add a wrong technical field name.
+                try:
+                    # name_get method returns a list, if name exists the list looks like:
+                    # [(123, 'Foo')]
+                    name_get = self.partner_id[field_name].name_get()
+                    if name_get and name_get[0]:
+                        partner_fields_dict.update(
+                            {field_name: name_get[0][1]}
+                        )
+                except KeyError:
+                    pass
         # add current_date formatted string too
         lang_id = get_lang(self.env, self.env.user.lang)
         partner_fields_dict.update(
